@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app class="bg-blue-grey-lighten-5">
+    <v-main>
+      <HomeComponent @snackbarEmail="onSnackbarEmail"/>
+    </v-main>
+    <v-footer app bottom fixed padless class="bg-blue-grey-lighten-5">
+      <FooterComponent @snackbarEmail="onSnackbarEmail"/>
+    </v-footer>
+    <v-snackbar v-model="snackbar.show" :timeout="5000">
+      <h2 class="text-center font-weight-bold">{{ snackbar.email }}</h2>
+    </v-snackbar>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HomeComponent from './components/HomeComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      snackbar: {
+        show: false,
+        email: 'damir.bubanovic@yahoo.com'
+      }
+    }
+  },
+  mounted() {
+    document.title = 'd4b6 | Home Page'
+  },
+  methods: {
+    onSnackbarEmail(data) {
+      this.snackbar.show = data;
+    }
+  },
   components: {
-    HelloWorld
-  }
+    HomeComponent,
+    FooterComponent
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
