@@ -1,7 +1,7 @@
 <p align="center"><img src="src/assets/d4b6.png"></p>
 
 
-## d4b6 | Landind Page
+## d4b6 | Landing Page
 
 
 
